@@ -1,11 +1,30 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Signup } from "./pages/Signup";
+import { Signin } from "./pages/Signin";
+import { Dashboard } from "./pages/Dashboard";
+import { SendMoney } from "./pages/SendMoney";
+import { RecoilRoot } from "recoil";
+import { usernameAtom } from "./components/atom";
+import { useState } from "react";
 
 function App() {
+  const [recoilUsername, setRecoilUsername] = useState("");
 
   return (
-    <div>
-        Hello world
-    </div>
-  )
+    <>
+      <RecoilRoot>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Signup />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/signin" element={<Signin />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/send" element={<SendMoney />} />
+          </Routes>
+        </BrowserRouter>
+      </RecoilRoot>
+    </>
+  );
 }
 
-export default App
+export default App;
