@@ -1,6 +1,8 @@
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { sourceAtom } from "./components/atom";
 
 export const SendMoney = () => {
   const [searchParams] = useSearchParams();
@@ -10,6 +12,8 @@ export const SendMoney = () => {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   const [response, setResponse] = useState("");
+
+  const source = useRecoilValue(sourceAtom);
 
   return (
     <div className="flex justify-center h-screen bg-gray-100">
@@ -49,7 +53,7 @@ export const SendMoney = () => {
                 onClick={() => {
                   axios
                     .post(
-                      "https://paytm-project-mern-ei0wfexiv-methu-parois-projects.vercel.app/api/v1/account/transfer",
+                      `${source}/api/v1/account/transfer`,
                       {
                         to: id,
                         amount,

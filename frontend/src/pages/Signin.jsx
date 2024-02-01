@@ -6,8 +6,9 @@ import { InputBox } from "../components/InputBox";
 import { SubHeading } from "../components/SubHeading";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { usernameAtom } from "../components/atom";
+import { sourceAtom } from "./components/atom";
 
 export const Signin = () => {
   const [username, setUsername] = useState("");
@@ -15,6 +16,8 @@ export const Signin = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [recoilUsername, setRecoilUsername] = useRecoilState(usernameAtom);
+
+  const source = useRecoilValue(sourceAtom);
 
   const navigate = useNavigate();
 
@@ -43,13 +46,10 @@ export const Signin = () => {
             <Button
               onClick={() => {
                 axios
-                  .post(
-                    "https://paytm-project-mern-ei0wfexiv-methu-parois-projects.vercel.app/api/v1/user/signin",
-                    {
-                      username,
-                      password,
-                    }
-                  )
+                  .post(`${source}/api/v1/user/signin`, {
+                    username,
+                    password,
+                  })
                   .then((response) => {
                     if (response.status === 200) {
                       localStorage.setItem("token", response.data.token);

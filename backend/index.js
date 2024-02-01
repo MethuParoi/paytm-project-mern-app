@@ -4,20 +4,14 @@ const cors = require("cors");
 const app = express();
 
 app.use(express.json());
-
-app.use(
-  cors({
-    origin: ["https://paytm-project-mern-app-frontend.vercel.app/"],
-    methods: ["POST", "GET"],
-    credentials: true,
-  })
-);
-
+app.use(cors());
 
 const rootRouter = require("./routes/index");
 app.use("/api/v1", rootRouter);
 
-
+app.get("/", (req, res) => {
+  res.send("Paytm server running");
+});
 
 const PORT = 3000;
 app.listen(PORT, (err) => {

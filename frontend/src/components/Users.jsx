@@ -4,18 +4,18 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { usernameAtom } from "./atom";
+import { sourceAtom } from "./components/atom";
 
 export const Users = () => {
   // Replace with backend call
   const [users, setUsers] = useState([]);
   const [filter, setFilter] = useState("");
 
+  const source = useRecoilValue(sourceAtom);
+
   useEffect(() => {
     axios
-      .get(
-        "https://paytm-project-mern-ei0wfexiv-methu-parois-projects.vercel.app/v1/user/bulk?filter=" +
-          filter
-      )
+      .get(`${source}/api/v1/user/bulk?filter=` + filter)
       .then((response) => {
         setUsers(response.data.user);
       });

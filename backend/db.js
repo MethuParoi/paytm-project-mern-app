@@ -4,8 +4,6 @@ require("dotenv").config();
 const databaseUrl = process.env.DATABASE_URL;
 mongoose.connect(databaseUrl);
 
-// mongoose.connect("mongodb+srv://paroimethu:Q3NP8yng5IIXDNIb@paytmcluster0.ebuu6pd.mongodb.net/");
-
 /**
  * @type {mongoose.SchemaDefinitionProperty}
  */
