@@ -8,7 +8,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { usernameAtom } from "../components/atom";
-import { sourceAtom } from "./components/atom";
+import { sourceAtom } from "../components/atom";
 
 export const Signup = () => {
   const [firstName, setFirstName] = useState("");
