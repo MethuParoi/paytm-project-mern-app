@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
-import { sourceAtom } from "./components/atom";
+import { sourceAtom } from "../components/atom";
 
 export const SendMoney = () => {
   const [searchParams] = useSearchParams();
