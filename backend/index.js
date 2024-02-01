@@ -3,8 +3,15 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(cors());
 app.use(express.json());
+
+app.use(
+  cors({
+    origin: ["https://paytm-project-mern-app-frontend.vercel.app"],
+    methods: ["POST", "GET"],
+    credentials: true,
+  })
+);
 
 
 const rootRouter = require("./routes/index");
