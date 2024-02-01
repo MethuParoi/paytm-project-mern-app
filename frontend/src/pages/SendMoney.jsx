@@ -49,7 +49,7 @@ export const SendMoney = () => {
                 onClick={() => {
                   axios
                     .post(
-                      "http://localhost:3000/api/v1/account/transfer",
+                      "https://paytm-project-mern-ei0wfexiv-methu-parois-projects.vercel.app/api/v1/account/transfer",
                       {
                         to: id,
                         amount,
@@ -83,7 +83,6 @@ export const SendMoney = () => {
           <div className="pl-20 pb-2">
             {error && <p className="text-red-500">{response}</p>}
             {success && <p className="text-gray-800 text-xl">{response}</p>}
-            {/* <p className="text-green-500">Transaction Succesful!</p> */}
           </div>
         </div>
       </div>

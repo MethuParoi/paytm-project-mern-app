@@ -56,7 +56,7 @@ export const Signup = () => {
             <Button
               onClick={async () => {
                 const response = await axios.post(
-                  "http://localhost:3000/api/v1/user/signup",
+                  "https://paytm-project-mern-ei0wfexiv-methu-parois-projects.vercel.app/api/v1/user/signup",
                   {
                     username,
                     firstName,

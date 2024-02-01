@@ -8,11 +8,14 @@ export const Balance = () => {
     const fetchBalance = async () => {
       try {
         axios
-          .get("http://localhost:3000/api/v1/account/balance", {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-          })
+          .get(
+            "https://paytm-project-mern-ei0wfexiv-methu-parois-projects.vercel.app/api/v1/account/balance",
+            {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("token"),
+              },
+            }
+          )
           .then((response) => {
             // Update balance state with response data
             setBalance(response.data.balance);
