@@ -8,7 +8,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { usernameAtom } from "../components/atom";
-import { sourceAtom } from "./components/atom";
+import { sourceAtom } from "../components/atom";
 
 export const Signin = () => {
   const [username, setUsername] = useState("");
