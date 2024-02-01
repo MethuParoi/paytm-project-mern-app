@@ -1,21 +1,22 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
+import { sourceAtom } from "./atom";
 
 export const Balance = () => {
   const [balance, setBalance] = useState(null);
+
+  const source = useRecoilValue(sourceAtom);
 
   useEffect(() => {
     const fetchBalance = async () => {
       try {
         axios
-          .get(
-            "https://paytm-project-mern-ei0wfexiv-methu-parois-projects.vercel.app/api/v1/account/balance",
-            {
-              headers: {
-                Authorization: "Bearer " + localStorage.getItem("token"),
-              },
-            }
-          )
+          .get(`${source}/api/v1/account/balance`, {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          })
           .then((response) => {
             // Update balance state with response data
             setBalance(response.data.balance);

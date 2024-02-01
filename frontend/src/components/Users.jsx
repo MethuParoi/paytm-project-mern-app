@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { usernameAtom } from "./atom";
-import { sourceAtom } from "./components/atom";
+import { sourceAtom } from "./atom";
 
 export const Users = () => {
   // Replace with backend call
