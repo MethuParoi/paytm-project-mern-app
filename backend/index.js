@@ -7,7 +7,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: ["https://paytm-project-mern-app-frontend.vercel.app"],
+    origin: ["https://paytm-project-mern-app-frontend.vercel.app/"],
     methods: ["POST", "GET"],
     credentials: true,
   })
