@@ -16,7 +16,7 @@ export const Signup = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [resp, setResponse] = useState("");
+  const [success, setSuccess] = useState("");
 
   const navigate = useNavigate();
 
@@ -61,38 +61,73 @@ export const Signup = () => {
 
           <div className="pt-4">
             <Button
-              onClick={async () => {
-                const response = await axios.post(
-                  `${source}/api/v1/user/signup`,
-                  {
+              // onClick={async () => {
+              //   const response = await axios.post(
+              //     `${source}/api/v1/user/signup`,
+              //     {
+              //       username,
+              //       firstName,
+              //       lastName,
+              //       password,
+              //     }
+              //   );
+
+              //   if (response.status === 200) {
+              //     const userName = response.data.username;
+              //     localStorage.setItem("token", response.data.token);
+              //     setRecoilUsername(userName);
+              //     navigate("/dashboard");
+              //     setError(false);
+              //     setResponse(response.data.message);
+              //   } else {
+              //     setError(true);
+              //     if (response.data && response.data.message) {
+              //       setResponse(response.data.message);
+              //     } else {
+              //       setResponse("Incorrect input");
+              //     }
+              //   }
+              // }}
+
+              onClick={() => {
+                axios
+                  .post(`${source}/api/v1/user/signup`, {
                     username,
                     firstName,
                     lastName,
                     password,
-                  }
-                );
+                  })
+                  .then((response) => {
+                    if (response.status === 200) {
+                      const userName = response.data.username;
+                      localStorage.setItem("token", response.data.token);
+                      setRecoilUsername(userName);
 
-                if (response.status === 200) {
-                  const userName = response.data.username;
-                  localStorage.setItem("token", response.data.token);
-                  setRecoilUsername(userName);
-                  navigate("/dashboard");
-                  setError(false);
-                  setResponse(response.data.message);
-                } else {
-                  setError(true);
-                  if (response.data && response.data.message) {
-                    setResponse(response.data.message);
-                  } else {
-                    setResponse("Incorrect input");
-                  }
-                }
+                      navigate("/dashboard");
+                    }
+                  })
+                  .catch((error) => {
+                    // Handle error
+                    setSuccess(false);
+                    if (error.response) {
+                      // The request was made and the server responded with a status code
+                      setError(error.response.data.message);
+                    } else if (error.request) {
+                      // The request was made but no response was received
+                      setError("Network error, please try again later.");
+                    } else {
+                      // Something else happened in making the request
+                      setError("An unexpected error occurred.");
+                    }
+                  });
               }}
               label={"Sign up"}
             />
           </div>
 
-          {error && <p className="text-gray-800 lg:text-xl text-lg">{resp}</p>}
+          {error && <p className="text-red-500">{error}</p>}
+          {success && <p className="text-green-500">Sign-in successful!</p>}
+
           <BottomWarning
             label={"Already have an account?"}
             buttonText={"Sign in"}
