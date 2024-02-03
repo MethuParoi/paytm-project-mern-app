@@ -12,16 +12,16 @@ export const Appbar = () => {
   return (
     <div className="shadow h-14 flex justify-between my-2 px-4">
       <div className="flex flex-col justify-center h-full ml-4">
-        <p className="text-2xl font-semibold">PayTM App</p>
+        <p className="text-xl lg:text-2xl font-semibold">PayTM App</p>
       </div>
       <div className="flex items-center">
-        <div className="text-xl flex flex-col justify-center h-full mr-4">
+        <div className="invisible lg:visible text-xl flex flex-col justify-center h-full mr-4">
           Hello, {name}
         </div>
 
         <div>
           <button
-            className="text-xl py-2 px-4 bg-slate-200 rounded-lg"
+            className="text-lg lg:text-xl py-2 px-4 bg-slate-200 rounded-lg"
             onClick={() => {
               //remove user from local storage
               localStorage.removeItem("token");
