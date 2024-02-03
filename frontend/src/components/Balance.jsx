@@ -36,7 +36,7 @@ export const Balance = () => {
 
     //clear interval on component unmount
     return () => clearInterval(intervalId);
-  }, [source]);
+  }, [source, balance]);
 
   return (
     <div className="flex">
