@@ -16,7 +16,7 @@ export const Signup = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [response, setResponse] = useState("");
+  const [resp, setResponse] = useState("");
 
   const navigate = useNavigate();
 
@@ -92,9 +92,7 @@ export const Signup = () => {
             />
           </div>
 
-          {error && (
-            <p className="text-gray-800 lg:text-xl text-lg">{response}</p>
-          )}
+          {error && <p className="text-gray-800 lg:text-xl text-lg">{resp}</p>}
           <BottomWarning
             label={"Already have an account?"}
             buttonText={"Sign in"}
