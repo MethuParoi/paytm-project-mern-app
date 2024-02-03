@@ -15,6 +15,8 @@ export const Signup = () => {
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const navigate = useNavigate();
 
   const source = useRecoilValue(sourceAtom);
@@ -55,9 +57,10 @@ export const Signup = () => {
             placeholder="Enter password"
             label={"Password"}
           />
-          <div className="pt-4">
+          {/* <div className="pt-4">
             <Button
-              onClick={async () => {
+            try{
+                onClick={async () => {
                 const response = await axios.post(
                   `${source}/api/v1/user/signup`,
                   {
@@ -73,11 +76,70 @@ export const Signup = () => {
                   setRecoilUsername(userName);
 
                   navigate("/dashboard");
+                }}
+              }
+  
+              catch{(error) => {
+                    // Handle error
+                    setSuccess(false);
+                    if (error.response) {
+                      // The request was made and the server responded with a status code
+                      setError(error.response.data.message);
+                    } else if (error.request) {
+                      // The request was made but no response was received
+                      setError("Network error, please try again later.");
+                    } else {
+                      // Something else happened in making the request
+                      setError("An unexpected error occurred.");
+                    }
+                  }}
+              }
+              label={"Sign up"}
+            />
+          </div> */}
+
+          <div className="pt-4">
+            <Button
+              onClick={async () => {
+                try {
+                  const response = await axios.post(
+                    `${source}/api/v1/user/signup`,
+                    {
+                      username,
+                      firstName,
+                      lastName,
+                      password,
+                    }
+                  );
+
+                  if (response.status === 200) {
+                    const userName = response.data.username;
+                    localStorage.setItem("token", response.data.token);
+                    setRecoilUsername(userName);
+                    navigate("/dashboard");
+                  }
+                } catch (error) {
+                  // Handle error
+                  setSuccess(false);
+                  if (error.response) {
+                    // The request was made and the server responded with a status code
+                    setError(error.response.data.message);
+                  } else if (error.request) {
+                    // The request was made but no response was received
+                    setError("Network error, please try again later.");
+                  } else {
+                    // Something else happened in making the request
+                    setError("An unexpected error occurred.");
+                  }
                 }
               }}
               label={"Sign up"}
             />
           </div>
+
+          {error && <p className="text-red-500">{error}</p>}
+          {success && <p className="text-green-500">Sign-up successful!</p>}
+
           <BottomWarning
             label={"Already have an account?"}
             buttonText={"Sign in"}

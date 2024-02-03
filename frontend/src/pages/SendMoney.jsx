@@ -85,6 +85,7 @@ export const SendMoney = () => {
           </div>
 
           <div className="lg:pl-20 pl-12 lg:pb-2">
+            <p className="text-lg">Transfer successful!</p>
             {error && <p className="text-red-500">{response}</p>}
             {success && (
               <p className="text-gray-800 lg:text-xl text-lg">{response}</p>
