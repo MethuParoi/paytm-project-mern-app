@@ -16,7 +16,6 @@ export const Signup = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
   const [response, setResponse] = useState("");
 
   const navigate = useNavigate();
@@ -59,46 +58,6 @@ export const Signup = () => {
             placeholder="Enter password"
             label={"Password"}
           />
-          {/* <div className="pt-4">
-            <Button
-            try{
-                onClick={async () => {
-                const response = await axios.post(
-                  `${source}/api/v1/user/signup`,
-                  {
-                    username,
-                    firstName,
-                    lastName,
-                    password,
-                  }
-                );
-                localStorage.setItem("token", response.data.token);
-                if (response.status === 200) {
-                  const userName = response.data.firstName;
-                  setRecoilUsername(userName);
-
-                  navigate("/dashboard");
-                }}
-              }
-  
-              catch{(error) => {
-                    // Handle error
-                    setSuccess(false);
-                    if (error.response) {
-                      // The request was made and the server responded with a status code
-                      setError(error.response.data.message);
-                    } else if (error.request) {
-                      // The request was made but no response was received
-                      setError("Network error, please try again later.");
-                    } else {
-                      // Something else happened in making the request
-                      setError("An unexpected error occurred.");
-                    }
-                  }}
-              }
-              label={"Sign up"}
-            />
-          </div> */}
 
           <div className="pt-4">
             <Button
@@ -118,11 +77,10 @@ export const Signup = () => {
                   localStorage.setItem("token", response.data.token);
                   setRecoilUsername(userName);
                   navigate("/dashboard");
-                  setSuccess(true);
+                  setError(false);
                   setResponse(response.data.message);
                 }
                 if (response.status != 200) {
-                  setSuccess(false);
                   setError(true);
                   setResponse(response.data.message);
                 }
@@ -131,7 +89,7 @@ export const Signup = () => {
             />
           </div>
 
-          {success && (
+          {error && (
             <p className="text-gray-800 lg:text-xl text-lg">{response}</p>
           )}
 
