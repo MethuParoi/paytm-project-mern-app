@@ -79,10 +79,13 @@ export const Signup = () => {
                   navigate("/dashboard");
                   setError(false);
                   setResponse(response.data.message);
-                }
-                if (response.status != 200) {
+                } else {
                   setError(true);
-                  setResponse(response.data.message);
+                  if (response.data && response.data.message) {
+                    setResponse(response.data.message);
+                  } else {
+                    setResponse("Incorrect input");
+                  }
                 }
               }}
               label={"Sign up"}
@@ -92,7 +95,6 @@ export const Signup = () => {
           {error && (
             <p className="text-gray-800 lg:text-xl text-lg">{response}</p>
           )}
-
           <BottomWarning
             label={"Already have an account?"}
             buttonText={"Sign in"}
