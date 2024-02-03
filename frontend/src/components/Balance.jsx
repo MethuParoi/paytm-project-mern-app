@@ -26,9 +26,17 @@ export const Balance = () => {
         // Handle error if necessary
       }
     };
-
+    //fetch balance initially
     fetchBalance();
-  }, []);
+
+    //fetch balance after every 5sec
+    const intervalId = setInterval(() => {
+      fetchBalance();
+    }, 5000);
+
+    //clear interval on component unmount
+    return () => clearInterval(intervalId);
+  }, [source]);
 
   return (
     <div className="flex">
