@@ -7,7 +7,7 @@ export const Dashboard = () => {
   return (
     <div>
       <Appbar />
-      <div className="m-8">
+      <div className="m-4 lg:m-8">
         <Balance />
         <Users />
       </div>

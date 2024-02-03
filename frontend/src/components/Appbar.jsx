@@ -11,7 +11,7 @@ export const Appbar = () => {
 
   return (
     <div className="shadow h-14 flex justify-between my-2 lg:px-4 px-2">
-      <div className="flex flex-col justify-center h-full lg:ml-4 ml-2">
+      <div className="flex flex-col justify-center h-full lg:ml-4 ">
         <p className="text-lg lg:text-2xl font-semibold">PayTM App</p>
       </div>
       <div className="flex items-center">
