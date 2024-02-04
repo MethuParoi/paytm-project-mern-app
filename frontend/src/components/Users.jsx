@@ -10,6 +10,7 @@ export const Users = () => {
   // Replace with backend call
   const [users, setUsers] = useState([]);
   const [filter, setFilter] = useState("");
+  const [counter, setCounter] = useState("");
 
   const source = useRecoilValue(sourceAtom);
 
@@ -28,11 +29,12 @@ export const Users = () => {
     //fetch balance after every 5sec
     const intervalId = setInterval(() => {
       fetchUser();
+      setCounter(counter + 1);
     }, 5000);
 
     //clear interval on component unmount
     return () => clearInterval(intervalId);
-  }, [source, filter, users]);
+  }, [source, filter, counter]);
 
   return (
     <>
