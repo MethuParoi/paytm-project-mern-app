@@ -14,12 +14,25 @@ export const Users = () => {
   const source = useRecoilValue(sourceAtom);
 
   useEffect(() => {
-    axios
-      .get(`${source}/api/v1/user/bulk?filter=` + filter)
-      .then((response) => {
-        setUsers(response.data.user);
-      });
-  }, [filter]);
+    const fetchUser = () => {
+      axios
+        .get(`${source}/api/v1/user/bulk?filter=` + filter)
+        .then((response) => {
+          setUsers(response.data.user);
+        });
+    };
+
+    //fetch balance initially
+    fetchUser();
+
+    //fetch balance after every 5sec
+    const intervalId = setInterval(() => {
+      fetchUser();
+    }, 5000);
+
+    //clear interval on component unmount
+    return () => clearInterval(intervalId);
+  }, [source, filter, users]);
 
   return (
     <>
