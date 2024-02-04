@@ -24,7 +24,7 @@ router.post("/signup", async (req, res) => {
     const { success } = signupBody.safeParse(req.body);
     if (!success) {
       return res.status(411).json({
-        msg: "Email already exists/Incorrect inputs",
+        message: "Email already exists/Incorrect inputs",
       });
     }
 

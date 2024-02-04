@@ -33,14 +33,14 @@ export const Signup = () => {
             onChange={(e) => {
               setFirstName(e.target.value);
             }}
-            placeholder="Enter first name"
+            placeholder="Enter first name (min 3 char)"
             label={"First Name"}
           />
           <InputBox
             onChange={(e) => {
               setLastName(e.target.value);
             }}
-            placeholder="Enter last name"
+            placeholder="Enter last name  (min 3 char)"
             label={"Last Name"}
           />
           <InputBox
@@ -54,7 +54,7 @@ export const Signup = () => {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
-            placeholder="Enter password"
+            placeholder="Enter password (min 6 char)"
             label={"Password"}
           />
 
@@ -78,7 +78,7 @@ export const Signup = () => {
                     navigate("/dashboard");
                   }
                 } catch (error) {
-                  setError(error.response.data.msg);
+                  setError(error.response.data.message);
                 }
               }}
               label={"Sign up"}
