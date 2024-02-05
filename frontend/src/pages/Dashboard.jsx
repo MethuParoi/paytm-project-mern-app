@@ -5,7 +5,7 @@ import { Users } from "../components/Users";
 
 export const Dashboard = () => {
   return (
-    <div>
+    <div className="container mx-auto">
       <Appbar />
       <div className="m-4 lg:m-8">
         <Balance />
